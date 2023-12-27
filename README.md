@@ -1,3 +1,14 @@
+
+
+
+ng serve --openy
+
+ng update  
+
+https://rapidapi.com/guides/call-apis-angular
+
+
+
 # InscricaoTreinamento
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.

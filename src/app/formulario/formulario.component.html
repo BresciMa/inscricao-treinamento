@@ -1,0 +1,92 @@
+<div class="row my-3">
+    <div class="col">
+        Este é um programa VIP para quem busca resultados.
+    </div>
+</div>
+
+
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="row my-3">
+        <div class="col">
+            <label for="first-name" class="form-label">Primeiro Nome: </label>
+            <input id="first-name" type="text" formControlName="firstName" placeholder="Primeiro Nome"
+                class="form-control form-control-sm">
+
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col">
+            <label for="last-name" class="form-label">Sobrenome: </label>
+            <input id="last-name" type="text" formControlName="lastName" placeholder="Sobrenome (e nome do meio)"
+                class="form-control form-control-sm">
+        </div>
+    </div>
+
+
+    <div class="row my-3">
+        <div class="col">
+            <label for="email" class="form-label">E-Mail: </label>
+            <input id="email" type="text" formControlName="email" placeholder="nome@exemplo.com"
+                class="form-control form-control-sm">
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col">
+            <label for="whatsapp" class="form-label">Whatsapp: </label>
+            <input id="whatsapp" type="text" formControlName="whatsapp" placeholder="ddd 9999-9999"
+                class="form-control form-control-sm" mask="(00) 0000-0000||(00) 0 0000-0000">
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col">
+            <label for="vipId" class="form-label">Número VIP: </label>
+            <input id="vipId" type="text" formControlName="vipId" placeholder="Número VIP"
+                class="form-control form-control-sm">
+        </div>
+    </div>
+
+
+    <div class="row my-3">
+        <div class="col">
+            <label>
+                <input id="informacoesLegais" type="checkbox" 
+                    class="form-check-input" 
+                    formControlName="informacoesLegais">
+                Concordo com os <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/" target="_blank">Termos da Inscrição VIP</a>
+            </label><br>
+            <label>
+                <input id="politicaCancelamentoEUsoDeImagem" type="checkbox" 
+                    class="form-check-input" 
+                    formControlName="politicaCancelamentoEUsoDeImagem">
+                Concordo com a <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/" target="_blank">Política de Cancelamento e do Uso de Imagem</a>
+            </label><br>
+            <label>
+                <input id="inscricaoLista" type="checkbox" 
+                class="form-check-input" 
+                formControlName="inscricaoLista" ng-checked="Inscrito">
+                Quero receber promoções por e-mail
+            </label>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col">
+            <div  *ngIf="mensagemValidacao != ''"  style="color:#ff0000">[OBRIGATÓRIO] : {{mensagemValidacao}}</div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col">
+            <p>Clique no botão para reservar a sua vaga</p>
+            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-lg">Quero o VIP!</button>
+        </div>
+    </div>
+
+
+
+
+</form>
