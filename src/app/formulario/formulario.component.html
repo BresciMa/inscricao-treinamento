@@ -1,6 +1,8 @@
 <div class="row my-3">
     <div class="col">
-        Este é um programa VIP para quem busca resultados.
+        <b>PARABÉNS!!!</b> Aqui você vai descobrir se é elegível a um ACESSO VIP no Treinamento Definindo Metas 2024.
+        Você recebeu este link porque um amigo especial lembrou de você.
+        <b>Tudo o que você precisa fazer é preencher os dados e RECEBER o SEU ACESSO VIP</b>
     </div>
 </div>
 
@@ -53,21 +55,22 @@
     <div class="row my-3">
         <div class="col">
             <label>
-                <input id="informacoesLegais" type="checkbox" 
-                    class="form-check-input" 
+                <input id="informacoesLegais" type="checkbox" class="form-check-input"
                     formControlName="informacoesLegais">
-                Concordo com os <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/" target="_blank">Termos da Inscrição VIP</a>
+                Concordo com os <a
+                    href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
+                    target="_blank">Termos da Inscrição VIP</a>
             </label><br>
             <label>
-                <input id="politicaCancelamentoEUsoDeImagem" type="checkbox" 
-                    class="form-check-input" 
+                <input id="politicaCancelamentoEUsoDeImagem" type="checkbox" class="form-check-input"
                     formControlName="politicaCancelamentoEUsoDeImagem">
-                Concordo com a <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/" target="_blank">Política de Cancelamento e do Uso de Imagem</a>
+                Concordo com a <a
+                    href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
+                    target="_blank">Política de Cancelamento e do Uso de Imagem</a>
             </label><br>
             <label>
-                <input id="inscricaoLista" type="checkbox" 
-                class="form-check-input" 
-                formControlName="inscricaoLista" ng-checked="Inscrito">
+                <input id="inscricaoLista" type="checkbox" class="form-check-input" formControlName="inscricaoLista"
+                    ng-checked="Inscrito">
                 Quero receber promoções por e-mail
             </label>
         </div>
@@ -75,9 +78,24 @@
 
     <div class="row my-3">
         <div class="col">
-            <div  *ngIf="mensagemValidacao != ''"  style="color:#ff0000">[OBRIGATÓRIO] : {{mensagemValidacao}}</div>
+            <div *ngIf="mensagemValidacao != ''" style="color:#ff0000">[OBRIGATÓRIO] : {{mensagemValidacao}}</div>
+
+
+            <div *ngIf="vipValidado == true">
+                <h2>Parabéns!!<br>
+                    VOCÊ GANHOU UM DESCONTO</h2>
+                <h3>Preço orignal De: <s>R$997</s> por: R$ 297</h3>
+                <H4><a href="https://pag.ae/7-6fKfvhG">Clique aqui para resgatar o seu desconto</a></H4>
+            </div>
+
         </div>
     </div>
+
+
+
+
+
+
 
     <div class="row my-3">
         <div class="col">
@@ -85,8 +103,6 @@
             <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-lg">Quero o VIP!</button>
         </div>
     </div>
-
-
 
 
 </form>

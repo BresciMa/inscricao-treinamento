@@ -5,6 +5,8 @@ ng serve --openy
 
 ng update  
 
+ng build  --base-href
+
 https://rapidapi.com/guides/call-apis-angular
 
 
