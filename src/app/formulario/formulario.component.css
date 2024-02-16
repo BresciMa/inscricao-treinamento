@@ -2,3 +2,21 @@
 
     font-size: 2em;
 }
+
+.img-logo {
+  max-width: 150px;
+}
+
+
+
+.img-container {
+    /* height: 150px; */
+    width: 100%;
+  }
+  
+  .img-container img {
+    height: 100%;
+    /* height: -webkit-fill-available; */
+    width: 100%;
+    object-fit: cover;
+  }

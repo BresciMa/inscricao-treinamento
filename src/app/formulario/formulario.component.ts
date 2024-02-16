@@ -27,6 +27,14 @@ export class FormularioComponent {
   vipValidado: boolean;
   myResult: any;
 
+  SituacaoInscricao = "";
+  grupoInscricaoWhatsapp = "";
+
+  numVagasWorkshop = 6;
+  descNumVagasWorkshop = "";
+  dataWorkshop = "";
+  localWorkshop = "";
+  grupoVendasWorkshop = "";
 
   constructor(
     private http: HttpClient
@@ -35,19 +43,11 @@ export class FormularioComponent {
     this.mensagemValidacao = "";
     this.vipValidado = false;
 
-    /*
-    this.profileForm.controls.email.setValue("bresciani@gmail.com");
-    this.profileForm.controls.firstName.setValue("Marcelo");
-    this.profileForm.controls.lastName.setValue("Jose Bresciani");
-    this.profileForm.controls.whatsapp.setValue("11 984085194");
-    this.profileForm.controls.vipId.setValue("1234");
-    this.profileForm.controls.informacoesLegais.setValue(true);
-    this.profileForm.controls.politicaCancelamentoEUsoDeImagem.setValue(true);
-    */
-   
+    this.SituacaoInscricao = "";
+
+    this.obtemDadosBackend();
+
   }
-
-
 
   profileForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -84,6 +84,34 @@ export class FormularioComponent {
   }
 
 
+  obtemDadosBackend(){
+    console.log(this.SituacaoInscricao);
+
+    const urlGoogleBackEnd: string = 'https://script.google.com/macros/s/AKfycbyX34CLo-4Xl52Og4QKvZfPEuYbxo2-3fE63vUprH0V0xE_cWX9EBl6x1fKPjx1-Yc/exec';
+
+    var result = this.http.get(urlGoogleBackEnd)
+      .subscribe((data) => {
+
+        this.myResult = JSON.parse(data.toString());
+
+        console.log(this.myResult.SituacaoInscricao);
+
+        this.SituacaoInscricao = this.myResult.SituacaoInscricao;
+
+        this.numVagasWorkshop = Number(this.myResult.Vagas);
+        this.dataWorkshop = this.myResult.DataEvento;
+        this.localWorkshop = this.myResult.Local;
+        this.grupoVendasWorkshop = this.myResult.GrupoVendas;
+
+        if (this.numVagasWorkshop > 1){
+          this.descNumVagasWorkshop = "" + this.numVagasWorkshop + " VAGAS";
+        }else{
+          this.descNumVagasWorkshop = "UMA VAGA";
+        }
+    })
+  }
+
+
   onSubmit() {
     if (this.validacao()) {
 
@@ -98,11 +126,11 @@ export class FormularioComponent {
       var result = this.http.post(urlGoogleServer, dataForm, { 'headers': headersOp })
         .subscribe((data) => {
           this.myResult = data;
-          console.log("Rodando o método Subscribe");
-          console.log(this.myResult.result);
 
           this.vipValidado = true;
 
+        },(error) => {
+          this.mensagemValidacao = "Um erro inesperado aconteceu - Por favor, avise o responsável pelo site."
         });
 
     }

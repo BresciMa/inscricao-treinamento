@@ -1,7 +1,7 @@
 
 
 
-ng serve --openy
+ng serve --open
 
 ng update  
 

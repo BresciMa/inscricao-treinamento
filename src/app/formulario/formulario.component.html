@@ -1,108 +1,168 @@
-<div class="row my-3">
+<div class="col text-center">
+    <h6>ACESSO VIP</h6>
+    <img src="./assets/logotipo-o-novo-mindset.png" text="Logotipo O Novo MindSet" class="img-logo" />
+</div>
+
+<div *ngIf="vipValidado != true" class="row my-3">
     <div class="col">
-        <b>PARABÉNS!!!</b> Aqui você vai descobrir se é elegível a um ACESSO VIP no Treinamento Definindo Metas 2024.
-        Você recebeu este link porque um amigo especial lembrou de você.
-        <b>Tudo o que você precisa fazer é preencher os dados e RECEBER o SEU ACESSO VIP</b>
+
+        <div *ngIf="SituacaoInscricao == 'ABERTO'">
+            <h1>INSCRIÇÃO WORKSHOP</h1>
+
+            <b>PARABÉNS!!!</b> Você conseguiu uma vaga para o Workshop de Coach Sistêmico,
+            Onde através das ferramentas do <b>Coaching Sistêmico</b> e da <b>Programação Neurolinguística</b>,
+            vamos juntos superar crenças limitantes, bloqueios e padrões disfuncionais que nos
+            impedem de ter uma vida leve e com realizações. <br>
+            <b><span *ngIf="numVagasWorkshop > 1">RESTÃO APENAS</span>
+               <span *ngIf="numVagasWorkshop <= 1">RESTA </span> {{descNumVagasWorkshop}} !</b><br>
+        </div>
+
+        <div *ngIf="SituacaoInscricao == 'LISTADEESPERA'">
+            <h1>LISTA DE ESPERA WORKSHOP</h1>
+
+            <b>ATENÇÃO</b>, as inscrições acabam rapidamente e é importante que você garanta a sua vaga entrando para a
+            <b>LISTA DE ESPERA</b> do <b>Workshop de Coach Sistêmico</b>. As pessoas nesta lista tem mais chances de
+            participar,
+            mas ainda não é garantido. SE INSCREVA E PARTICIPE!<br>
+            <b>SÃO APENAS {{descNumVagasWorkshop}}</b><br>
+            Através das ferramentas do <b>Coaching Sistêmico</b> e da <b>Programação Neurolinguística</b>,
+            vamos juntos superar crenças limitantes, bloqueios e padrões disfuncionais que nos
+            impedem de ter uma vida leve e com realizações. <br>
+
+        </div>
+
+        <div *ngIf="dataWorkshop != ''" style="padding-top: 20px;">
+            Dia: {{dataWorkshop}} - {{localWorkshop}}
+        </div>
+
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="row my-3">
+                <div class="col">
+                    <label for="first-name" class="form-label">Primeiro Nome: </label>
+                    <input id="first-name" type="text" formControlName="firstName" placeholder="Primeiro Nome"
+                        class="form-control form-control-sm">
+
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="last-name" class="form-label">Sobrenome: </label>
+                    <input id="last-name" type="text" formControlName="lastName"
+                        placeholder="Sobrenome (e nome do meio)" class="form-control form-control-sm">
+                </div>
+            </div>
+
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="email" class="form-label">E-Mail: </label>
+                    <input id="email" type="text" formControlName="email" placeholder="nome@exemplo.com"
+                        class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="whatsapp" class="form-label">Whatsapp: </label>
+                    <input id="whatsapp" type="text" formControlName="whatsapp" placeholder="ddd 9999-9999"
+                        class="form-control form-control-sm" mask="(00) 0000-0000||(00) 0 0000-0000">
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="vipId" class="form-label">Número VIP: </label> - <i>Campo não obrigatório. Se tiver um
+                        cupom informe para obter mais descontos</i>
+                    <input id="vipId" type="text" formControlName="vipId" placeholder="Número VIP"
+                        class="form-control form-control-sm">
+
+                </div>
+            </div>
+
+
+            <div class="row my-3">
+                <div class="col">
+                    <label>
+                        <input id="informacoesLegais" type="checkbox" class="form-check-input"
+                            formControlName="informacoesLegais">
+                        Concordo com os Termos da Inscrição VIP
+                    </label><br>
+                    <label>
+                        <input id="politicaCancelamentoEUsoDeImagem" type="checkbox" class="form-check-input"
+                            formControlName="politicaCancelamentoEUsoDeImagem">
+                        Concordo com a Política de Cancelamento e do Uso de Imagem
+                    </label><br>
+                    <label>
+                        <input id="inscricaoLista" type="checkbox" class="form-check-input"
+                            formControlName="inscricaoLista" ng-checked="Inscrito">
+                        Quero receber promoções por e-mail
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="row my-3">
+                <div class="col">
+
+                    <div *ngIf="mensagemValidacao != ''" style="color:#ff0000">[ATENÇÃO] : {{mensagemValidacao}}</div>
+
+                    <p>Clique no botão para reservar a sua vaga</p>
+                    <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-lg">Quero o
+                        VIP!</button>
+
+                    <p>&nbsp;</p>
+                    <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
+                        target="_blank"><i>Termos da Inscrição VIP</i></a> |
+                    <a href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
+                        target="_blank"><i>Política de Cancelamento e do Uso de Imagem</i></a>
+
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>
 
+<div class="row my-3">
+    <div class="col">
 
+        <div *ngIf="vipValidado == true">
+            <div *ngIf="SituacaoInscricao == 'ABERTO'">
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="row my-3">
-        <div class="col">
-            <label for="first-name" class="form-label">Primeiro Nome: </label>
-            <input id="first-name" type="text" formControlName="firstName" placeholder="Primeiro Nome"
-                class="form-control form-control-sm">
+                <h2>TUDO CERTO!!!</h2>
+                <b>IMPORTANTE</b>: A sua participação vai estar garantida somente após a confirmação do pagamento <b>via
+                    pix</b>
+                <h3>Valor de Acesso: R$ 70,00</h3>
+                <h3>Chave PIX:</h3>
+                <h3>bresciani&#64;gmail.com</h3>
 
-        </div>
-    </div>
+                <p>&nbsp;</p>
+                <p>Ou <b>Pague com QRCode - Pagseguro</b></p>
+                <p><img class="img-container" src="./assets/qrcode-pix-pagseguro.png" alt="PIX PagSeguro" />
+                </p>
 
-    <div class="row my-3">
-        <div class="col">
-            <label for="last-name" class="form-label">Sobrenome: </label>
-            <input id="last-name" type="text" formControlName="lastName" placeholder="Sobrenome (e nome do meio)"
-                class="form-control form-control-sm">
-        </div>
-    </div>
+            </div>
 
+            <div *ngIf="SituacaoInscricao == 'LISTADEESPERA'">
+                <h2>VOCÊ ESTÁ INSCRITO NA LISTA DE ESPERA, MAS ATENÇÃO</h2>
 
-    <div class="row my-3">
-        <div class="col">
-            <label for="email" class="form-label">E-Mail: </label>
-            <input id="email" type="text" formControlName="email" placeholder="nome@exemplo.com"
-                class="form-control form-control-sm">
-        </div>
-    </div>
+                <p>É <b>IMPORTANTE</b>: que voocê fique atento nas mensagens quando as inscrições forem abertas, e são
+                    muitas pessoas concorrendo a uma vaga.</p>
 
-    <div class="row my-3">
-        <div class="col">
-            <label for="whatsapp" class="form-label">Whatsapp: </label>
-            <input id="whatsapp" type="text" formControlName="whatsapp" placeholder="ddd 9999-9999"
-                class="form-control form-control-sm" mask="(00) 0000-0000||(00) 0 0000-0000">
-        </div>
-    </div>
+                <p>Recomendo que você entre no <b>GRUPO DO WHATSAPP</b> onde você vai saber em primeira mão quando
+                    abrirem
+                    as inscrições.</p>
 
-    <div class="row my-3">
-        <div class="col">
-            <label for="vipId" class="form-label">Número VIP: </label>
-            <input id="vipId" type="text" formControlName="vipId" placeholder="Número VIP"
-                class="form-control form-control-sm">
-        </div>
-    </div>
+                <p>
+                    <a href="{{grupoVendasWorkshop}}">{{grupoVendasWorkshop}}</a>
+                </p>
 
-
-    <div class="row my-3">
-        <div class="col">
-            <label>
-                <input id="informacoesLegais" type="checkbox" class="form-check-input"
-                    formControlName="informacoesLegais">
-                Concordo com os <a
-                    href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
-                    target="_blank">Termos da Inscrição VIP</a>
-            </label><br>
-            <label>
-                <input id="politicaCancelamentoEUsoDeImagem" type="checkbox" class="form-check-input"
-                    formControlName="politicaCancelamentoEUsoDeImagem">
-                Concordo com a <a
-                    href="https://marceloj.com/b/termos-e-condicoes-do-acesso-vip-aos-treinamentos-cursos-e-workshops/"
-                    target="_blank">Política de Cancelamento e do Uso de Imagem</a>
-            </label><br>
-            <label>
-                <input id="inscricaoLista" type="checkbox" class="form-check-input" formControlName="inscricaoLista"
-                    ng-checked="Inscrito">
-                Quero receber promoções por e-mail
-            </label>
-        </div>
-    </div>
-
-    <div class="row my-3">
-        <div class="col">
-            <div *ngIf="mensagemValidacao != ''" style="color:#ff0000">[OBRIGATÓRIO] : {{mensagemValidacao}}</div>
-
-
-            <div *ngIf="vipValidado == true">
-                <h2>Parabéns!!<br>
-                    VOCÊ GANHOU UM DESCONTO</h2>
-                <h3>Preço orignal De: <s>R$997</s> por: R$ 297</h3>
-                <H4><a href="https://pag.ae/7-6fKfvhG">Clique aqui para resgatar o seu desconto</a></H4>
             </div>
 
         </div>
+
     </div>
-
-
-
-
-
-
-
-    <div class="row my-3">
-        <div class="col">
-            <p>Clique no botão para reservar a sua vaga</p>
-            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-lg">Quero o VIP!</button>
-        </div>
-    </div>
-
-
-</form>
+</div>
